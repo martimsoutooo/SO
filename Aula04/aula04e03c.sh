@@ -10,3 +10,4 @@ echo count ${#assArray[@]}
 echo index ${!assArray[@]} 
  
 echo val Lisboa ${assArray[Lisboa]}
+
