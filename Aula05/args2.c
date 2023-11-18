@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 int main(int argc, char **argv)
 {
     int i, numChars;
     char *username;
 
-    username = getenv("USER");
+    username = getenv("NEWUSER");
     if(username != NULL)
     {
         printf("This program is being executed by %s\n", username);
@@ -28,3 +29,6 @@ int main(int argc, char **argv)
 
     return EXIT_SUCCESS;
 }
+
+// para criar uma variável no ambiente da bash é necessário usar o comando export
+// ex:. export NEWUSER='panças'
