@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
     int *numbers;
     FILE *fp = NULL;
     char line [LINEMAXSIZE]; 
+    int numInt=0;
+
 
     
     fp = fopen(argv[1], "r");
@@ -32,7 +34,7 @@ int main(int argc, char *argv[])
     
     }
 
-    while( fgets(line, sizeof(line), fp) != NULL ){
+    while( fscanf(fp,"%d", &numInt) != EOF  ){
         numLines++;
     }
 
@@ -40,8 +42,8 @@ int main(int argc, char *argv[])
 
     numbers = (int *) malloc(sizeof(int) * numLines);
 
-    while( fgets(line, sizeof(line), fp) != NULL ){
-        numbers[i] = atoi(line);
+    while( fscanf(fp,"%d", &numInt ) != EOF ){
+        numbers[i] = numInt;
         i++;
     }
 

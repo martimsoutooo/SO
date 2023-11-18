@@ -20,11 +20,21 @@ void listDir(char dirname[])
     }
 
     dent = readdir(dp);
-    while(dent!=NULL) 
+    while(dent != NULL) 
     {
-        if(dent->d_name[0] != '.') /* do not list hidden dirs/files */
-        {
-          printf("%s/%s\n",dirname,dent->d_name);
+        if (dent->d_name[0] != '.') { /* do not list hidden dirs/files */
+            char path[PATH_MAX]; // Declare uma matriz para armazenar o caminho completo
+            snprintf(path, sizeof(path), "%s/%s", dirname, dent->d_name); // Construa o caminho completo
+
+            if (dent->d_type == DT_DIR)
+            {
+                printf("%s d \n", path);
+                listDir(path); // Chame recursivamente com o caminho completo
+            }
+            else if (dent->d_type == DT_REG)
+            {
+                printf("%s  \n", path);
+            }
         }
 
         dent = readdir(dp);
