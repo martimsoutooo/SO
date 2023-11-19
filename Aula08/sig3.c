@@ -6,6 +6,7 @@
 
 #define NTIMES 50
 
+
 static void Interrupt (int);
 
 int main(int argc, char *argv[])
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
     sigact.sa_handler = Interrupt;
     sigemptyset (&sigact.sa_mask);
     sigact.sa_flags = 0;
+
     if (sigaction(SIGINT, &sigact, NULL) < 0) { 
         perror("Rotina de atendimento não instalada\n");
         return EXIT_FAILURE;
@@ -35,23 +37,21 @@ int main(int argc, char *argv[])
     return EXIT_SUCCESS;
 }
 
+int interrupt = 0;
+
 static void Interrupt (int signum)
 {
+    
     if (signum == SIGINT) {
+        interrupt++;
         printf("\nCalma, ainda não cheguei a %d!\n", NTIMES);
+        
+        if (interrupt == 4) {
+            signal(SIGINT, SIG_DFL);
+        }
     }
-    else {  
+    else {
         printf("Foi recebido um sinal diferente de SIGINT!\n");
         exit(EXIT_FAILURE);
     }
 }
-
-// Neste caso o programa não termina com ^C, continua a correr até chegar
-// ao número de segundos definido na constante NTIMES. A menos que o utilizador insira
-// ^\ (SIGQUIT).
-
-// O comando kill -SIGINT PID faz o mesmo que ^C
-// O comando kill -SIGSTOP PID faz o mesmo que ^Z
-// O comando kill -SIGCONT PID faz o mesmo que fg
-// O comando kill -SIGTERM PID termina o programa
-

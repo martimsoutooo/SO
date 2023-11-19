@@ -28,12 +28,12 @@ void listDir(char dirname[])
 
             if (dent->d_type == DT_DIR)
             {
-                printf("%s d \n", path);
+                printf("d %s\n", path);
                 listDir(path); // Chame recursivamente com o caminho completo
             }
             else if (dent->d_type == DT_REG)
             {
-                printf("%s  \n", path);
+                printf("  %s\n", path);
             }
         }
 

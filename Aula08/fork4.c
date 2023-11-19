@@ -36,3 +36,14 @@ int main(int argc, char *argv[])
 
     return EXIT_SUCCESS;
 }
+
+// foi retirada alinha do printf que era desnecessária sendo que
+// nunca seria executada, e foi adicionado um wait para esperar
+// que o processo filho acabe para que o processo pai não acabe
+
+// em primerio será imprimida a linha do pai antes do fork
+// em segundo será imprimida a linha do pai depois do fork provavelmente
+// em terceiro as linhas do processo filho que no caso estão no ficheiro ./child
+// e por fim a linha do pai a dizer que o filho acabou e o seu status de saída
+// sendo que o programa acabou normalmente o prompt não irá ter anomalias 
+

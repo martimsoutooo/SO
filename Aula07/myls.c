@@ -1,8 +1,9 @@
-#include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <dirent.h>
 #include <string.h>
+#include <getopt.h>
 
 int fa = 0;
 int da = 0;
@@ -65,9 +66,7 @@ int main(int argc, char *argv[]){
                 ea = 1;
                 ext = optarg;
                 break;
-            default: 
-                fprintf(stderr, "Usage: %s [-f] [-d] [-e ext] directory...\n", argv[0]);
-                exit(EXIT_FAILURE);
+            
         }
     }
 
